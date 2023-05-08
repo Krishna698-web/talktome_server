@@ -13,8 +13,8 @@ const cors = require('cors')
 
 dotenv.config();
 const PORT = process.env.PORT || 5000;
-// function that used to connect to mongoDB
-connectDB();
+
+connectDB(); // function that used to connect to mongoDB
 
 app.use(express.json()); //to accept data as json
 
@@ -23,18 +23,15 @@ app.use('/api/user', userRoutes);
 app.use('/api/chat', chatRoutes);
 app.use('/api/message', messageRoutes);
 
-// const pathToBuild = require('../frontend/build')
+// const pathToBuild = require('./build')
 
 // Code for Deployment
 const __dirname1 = path.resolve();
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, "../talk-tome/build")));
-    // app.use(express.static(path.join(__dirname1, "../talk-tome/build")));
-    console.log(path.join(__dirname1, "../talk-tome/build"));
+    app.use(express.static(path.join(__dirname, "./build")));
     app.get("*", (req, res) => {
-        res.sendFile(path.resolve(__dirname, "..", "talk-tome", "build", "index.html"));
-        // res.sendFile(path.resolve(__dirname1, "..", "talk_tome", "build", "index.html"));
-        console.log(path.resolve(__dirname1, "..", "talk-tome", "build", "index.html"));
+        res.sendFile(path.resolve(__dirname, "build", "index.html"));
+        console.log(path.join(__dirname1, "build", "index.html"));
     })
     app.get("*", (req, res) => {
     })
@@ -59,7 +56,7 @@ const server = app.listen(PORT);
 const io = require('socket.io')(server, {
     pingTimeout: 60000,
     cors: {
-        origin: 'https://talk-tome.netlify.app/', methods: ['GET', 'POST'],
+        origin: 'http://localhost:3000'
     }
 })
 io.on('connection', (socket) => {
