@@ -28,10 +28,10 @@ app.use('/api/message', messageRoutes);
 // Code for Deployment
 const __dirname1 = path.resolve();
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, "https://talk-tome.netlify.app/build")));
+    app.use(express.static(path.join(__dirname, "https://talk-tome.netlify.app/")));
     app.get("*", (req, res) => {
-        res.sendFile(path.resolve(__dirname1, "https://talk-tome.netlify.app/", "build", "index.html"));
-        console.log(path.join(__dirname1, "https://talk-tome.netlify.app/", "build", "index.html"));
+        res.sendFile(path.resolve(__dirname1, "https://talk-tome.netlify.app/", "index.html"));
+        console.log(path.join(__dirname1, "https://talk-tome.netlify.app/", "index.html"));
     })
     app.get("*", (req, res) => {
     })
