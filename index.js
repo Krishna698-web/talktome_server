@@ -33,9 +33,6 @@ if (process.env.NODE_ENV === 'production') {
         res.sendFile(path.resolve(__dirname1, "https://talk-tome.netlify.app/", "index.html"));
         console.log(path.join(__dirname1, "https://talk-tome.netlify.app/", "index.html"));
     })
-    app.get("*", (req, res) => {
-    })
-
 } else {
     app.get('/', (req, res) => {
         res.send('hello there I am listening')
@@ -59,6 +56,7 @@ const io = require('socket.io')(server, {
         origin: '*'
     }
 })
+
 io.on('connection', (socket) => {
     // console.log('connect to soket.io');
 
