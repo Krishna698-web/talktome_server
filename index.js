@@ -27,17 +27,17 @@ app.use('/api/message', messageRoutes);
 
 // Code for Deployment
 const __dirname1 = path.resolve();
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname1, "https://talk-tome.netlify.app/")));
-    app.get("*", (req, res) => {
-        res.sendFile(path.resolve(__dirname1, "https://talk-tome.netlify.app/", "index.html"));
-        console.log(path.join(__dirname1, "https://talk-tome.netlify.app/", "index.html"));
-    })
-} else {
-    app.get('/', (req, res) => {
-        res.send('hello there I am listening')
-    })
-}
+// if (process.env.NODE_ENV === 'production') {
+//     app.use(express.static(path.join(__dirname1, "https://talk-tome.netlify.app/")));
+//     app.get("*", (req, res) => {
+//         res.sendFile(path.resolve(__dirname1, "https://talk-tome.netlify.app/", "index.html"));
+//         console.log(path.join(__dirname1, "https://talk-tome.netlify.app/", "index.html"));
+//     })
+// } else {
+app.get('/', (req, res) => {
+    res.send('hello there I am listening')
+})
+// }
 
 // -------------------------------------
 
